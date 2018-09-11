@@ -50,7 +50,11 @@ UI.prototype.showAlert = function(message, className) {
 }
 
 // delete book
-
+UI.prototype.deleteBook = function(target) {
+  if(target.className === 'delete') {
+    target.parentElement.parentElement.remove();
+  }
+}
 
 // Clear fields
 UI.prototype.clearFields = function() {
@@ -95,4 +99,13 @@ document.getElementById('book-form').addEventListener('submit', function(e) {
 // get parent id
 document.getElementById('book-list').addEventListener('click', function(e) {
   e.preventDefault();
+
+  //instantiate UI
+  const ui = new UI();
+
+  // delete book
+  ui.deleteBook(e.target);
+
+  // show alert
+  ui.showAlert('Book removed', 'success');
 })
